@@ -8,13 +8,14 @@ import lombok.NoArgsConstructor;
 // @AllArgsConstructor
 @NoArgsConstructor
 public final class LoginResponseDto {
-    private String message;
+    private String token;
     private String studentName;
     private String point;
     private String email;
 
-    public LoginResponseDto(String m, String n, String p, String e) {
-        this.message = m;
+    // Builder로 변경할 필요?
+    public LoginResponseDto(String t, String n, String p, String e) {
+        this.token = t;
         this.studentName = n;
         this.point = p;
         this.email = e;
