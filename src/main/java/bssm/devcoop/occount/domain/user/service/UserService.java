@@ -19,7 +19,7 @@ public class UserService {
     @Value("${jwt:secret}")
     private String secretKey;
 
-    Long exprTime = 1000 * 60 * 60L;
+    private final Long exprTime = 1000 * 60 * 60L;
 
     public LoginResponseDto login(LoginRequestDto dto) throws Exception {
         String email = dto.email();
@@ -33,11 +33,14 @@ public class UserService {
             throw new Exception("비밀번호가 올바르지 않습니다.");
         } // Global Exception을 빠르게 정의할 필요가 있다.
 
-        String token = JwtUtil.createJwt(u, secretKey, exprTime);
+        String token = JwtUtil.createJwt(u.getCodeNumber(), secretKey, exprTime);
 
-        LoginResponseDto response = new LoginResponseDto(
-                token, u.getStudentName(),
-                u.getPoint(), email);
+        LoginResponseDto response = LoginResponseDto.builder()
+                .token(token)
+                .studentName(u.getStudentName())
+                .point(u.getPoint())
+                .email(email)
+                .build();
 
         return response; // token을 cookie로?
     }
