@@ -18,4 +18,4 @@ server:
     context-path: /api
 
 jwt:
-  secret: holymolyiveilovethissongHolyMolyIveIloveThisSongHOLYMOLYIVEILOVETHISSONGholymolyiveilovethissongHolyMolyIveIloveThisSongHOLYMOLY
+  secret: This1s2024DevCo0pOcc0untLog4uthWebTokenS3cretKey##!!
