@@ -3,6 +3,7 @@ package bssm.devcoop.occount.domain.user.presentation;
 import bssm.devcoop.occount.domain.user.presentation.dto.LoginRequestDto;
 import bssm.devcoop.occount.domain.user.presentation.dto.LoginResponseDto;
 import bssm.devcoop.occount.domain.user.service.UserService;
+import bssm.devcoop.occount.global.exception.GlobalException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public LoginResponseDto login(
-            @RequestBody LoginRequestDto dto) throws Exception{
+            @RequestBody LoginRequestDto dto) throws GlobalException{
         return userService.login(dto);
     }
 }
