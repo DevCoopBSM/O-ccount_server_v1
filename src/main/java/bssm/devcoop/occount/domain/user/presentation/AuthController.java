@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
     private final UserService userService;
-
     @PostMapping("/login")
-    public LoginResponseDto login(
-            @RequestBody LoginRequestDto dto) throws GlobalException{
+    public LoginResponseDto login(@RequestBody LoginRequestDto dto) throws GlobalException{
         return userService.login(dto);
     }
 }

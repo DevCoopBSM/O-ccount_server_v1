@@ -1,6 +1,11 @@
 package bssm.devcoop.occount.domain.user.presentation.dto;
 
-public record LoginRequestDto (
-        String email,
-        String password
-) { }
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class LoginRequestDto {
+    private String email;
+    private String password;
+}

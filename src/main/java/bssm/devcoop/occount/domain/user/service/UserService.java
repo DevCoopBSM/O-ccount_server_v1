@@ -22,12 +22,12 @@ public class UserService {
 
     @Value("${jwt:secret}")
     private String secretKey;
-
     private final Long exprTime = 1000 * 60 * 60L;
 
+    @Transactional
     public LoginResponseDto login(LoginRequestDto dto) throws GlobalException {
-        String email = dto.email();
-        String password = dto.password();
+        String email = dto.getEmail();
+        String password = dto.getPassword();
 
         User u = userRepository.findByEmail(email);
 
