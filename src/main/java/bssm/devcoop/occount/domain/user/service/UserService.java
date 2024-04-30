@@ -20,7 +20,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Value("${jwt:secret}")
+    @Value("${jwt.secret}")
     private String secretKey;
     private final Long exprTime = 1000 * 60 * 60L;
 

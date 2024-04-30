@@ -12,17 +12,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     @Id
-    private int studentNumber; // Primary key
+    private int studentNumber; // Primary key, 가입 순서
 
-    private String codeNumber;
+    private String codeNumber; // 학생증 바코드
     private String studentName;
     private String email; // @bssm.hs.kr
     private String password;
     private String point;
-    private short isAdmin;
-    private short isCoop;
-    private String refToken; // token 생성용
-    private String pin; // ** 설명 추가
+    private short isAdmin; // 관리자인가?
+    private short isCoop; // 매점부원인가?
+    private String refToken; // token
+    private String pin; // self counter password
 
     @Builder
     public User(
