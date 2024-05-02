@@ -12,34 +12,32 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     @Id
-    private int studentNumber; // Primary key, 가입 순서
+    private String userCode; // Primary key, 사용자 (학생증) 바코드
 
-    private String codeNumber; // 학생증 바코드
-    private String studentName;
+    private int userId; // 사용자 ID
+    private String userName;
     private String email; // @bssm.hs.kr
     private String password;
     private String point;
-    private short isAdmin; // 관리자인가?
-    private short isCoop; // 매점부원인가?
-    private String refToken; // token
-    private String pin; // self counter password
+    private short userType; // 사용자 유형, 0 ~ 3
+    private String accToken; // token
+    private String pin; // 셀프계산대 비밀번호
 
     @Builder
     public User(
-            int studentNumber, String codeNumber,
-            String studentName, String email, String password,
-            String point, short isAdmin, short isCoop,
-            String refToken, String pin
+            String userCode, int userId,
+            String userName, String email, String password,
+            String point, short userType,
+            String accToken, String pin
     ) {
-        this.studentNumber = studentNumber;
-        this.codeNumber = codeNumber;
-        this.studentName = studentName;
+        this.userCode = userCode;
+        this.userId = userId;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.point = point;
-        this.isAdmin = isAdmin;
-        this.isCoop = isCoop;
-        this.refToken = refToken;
+        this.userType = userType;
+        this.accToken = accToken;
         this.pin = pin;
     }
 }

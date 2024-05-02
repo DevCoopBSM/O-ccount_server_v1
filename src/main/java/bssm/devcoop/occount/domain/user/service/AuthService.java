@@ -16,13 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService {
+public class AuthService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Value("${jwt.secret}")
     private String secretKey;
-    private final Long exprTime = 1000 * 60 * 60L;
+    private final Long accessExprTime = 1000 * 60 * 60L;
 
     @Transactional
     public LoginResponseDto login(LoginRequestDto dto) throws GlobalException {
@@ -37,15 +37,25 @@ public class UserService {
             throw new GlobalException(ErrorCode.PASSWORD_NOT_CORRECT);
         }
 
-        String token = JwtUtil.createJwt(u.getCodeNumber(), secretKey, exprTime);
+        String accessToken = JwtUtil.createJwt(u.getUserCode(), secretKey, accessExprTime);
 
         LoginResponseDto response = LoginResponseDto.builder()
-                .token(token)
-                .studentName(u.getStudentName())
+                .accessToken(accessToken)
+                .studentName(u.getUserName())
                 .point(u.getPoint())
                 .email(email)
                 .build();
 
-        return response; // token을 cookie로?
+        return response;
+    }
+
+    @Transactional
+    public void logout() throws GlobalException {
+
+    }
+
+    @Transactional
+    public void pwChange() throws GlobalException {
+
     }
 }
